@@ -155,7 +155,7 @@ class HarvesterImpl<E extends Entity & ICapabilityHaver> extends AbstractCapabil
         //? if < 1.20.1 {
         /*LootContext.Builder builder = new LootContext.Builder((ServerLevel) getLevel())
         *///?} else
-        LootParams.Builder builder = new LootParams.Builder((ServerLevel) getLevel())
+         LootParams.Builder builder = new LootParams.Builder((ServerLevel) getLevel())
                 .withParameter(LootContextParams.TOOL, ItemStack.EMPTY)
                 .withParameter(LootContextParams.ORIGIN, entity.position());
         List<ItemStack> drops = state.getDrops(builder);

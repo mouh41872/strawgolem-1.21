@@ -486,7 +486,7 @@ public class StrawGolem extends AbstractGolem implements
         getGolemLevel().addParticle(ParticleTypes.HAPPY_VILLAGER, x, pos.y + 0.85F, z, movement.x, movement.y, movement.z);
     }
 
-    private Level getGolemLevel() {
+    private @NotNull Level getGolemLevel() {
         return VersionHelper.getLevel(this);
     }
 }

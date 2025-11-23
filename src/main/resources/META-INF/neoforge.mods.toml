@@ -17,6 +17,12 @@ description='''
 ${description}
 '''
 
+[[mixins]]
+config = "mixins.strawgolem.json"
+
+[[mixins]]
+config = "mixins.strawgolem.neo.json"
+
 ${depends}
 
 

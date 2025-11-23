@@ -1,28 +1,37 @@
-//? if forge {
-/*package com.t2pellet.strawgolem.forge;
+//? if neoforge {
+package com.t2pellet.strawgolem.neoforge;
 
 import com.t2pellet.haybale.HaybaleMod;
 import com.t2pellet.haybale.client.HaybaleModClient;
-import com.t2pellet.haybale.forge.HaybaleForgeMod;
+import com.t2pellet.haybale.neoforge.HaybaleNeoforgeMod;
 import com.t2pellet.strawgolem.Constants;
 import com.t2pellet.strawgolem.StrawgolemCommon;
 import com.t2pellet.strawgolem.client.StrawgolemClient;
 import com.t2pellet.strawgolem.common.events.ContainerClickHandler;
 import com.t2pellet.strawgolem.common.events.CropGrowthHandler;
 import com.t2pellet.strawgolem.common.util.container.ContainerUtil;
-import com.t2pellet.strawgolem.forge.events.CropGrowthEvent;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
 
 import java.util.function.Consumer;
 
-
 @Mod(Constants.MOD_ID)
 @HaybaleMod.IMod(Constants.MOD_ID)
-public class StrawgolemForge extends HaybaleForgeMod {
+public class StrawgolemNeoforge extends HaybaleNeoforgeMod {
+
+    private static StrawgolemNeoforge instance;
+
+    public static StrawgolemNeoforge getInstance() {
+        return instance;
+    }
+
+    public StrawgolemNeoforge(IEventBus modBus) {
+        super(modBus);
+    }
 
     @Override
     protected HaybaleMod getCommonMod() {
@@ -35,17 +44,18 @@ public class StrawgolemForge extends HaybaleForgeMod {
     }
 
     @Override
-    protected void registerEvents() {
-        MinecraftForge.EVENT_BUS.addListener((Consumer<CropGrowthEvent>) event -> {
+    protected void registerEvents(IEventBus modBus) {
+        NeoForge.EVENT_BUS.addListener((Consumer<BlockEvent.CropGrowEvent.Post>) event -> {
             if (event.getLevel() instanceof ServerLevel serverLevel) {
                 CropGrowthHandler.onCropGrowth(serverLevel, event.getPos());
             }
         });
-        MinecraftForge.EVENT_BUS.addListener((Consumer<PlayerInteractEvent.RightClickBlock>) event -> {
+        NeoForge.EVENT_BUS.addListener((Consumer<PlayerInteractEvent.RightClickBlock>) event -> {
             if (ContainerUtil.isContainer(event.getLevel(), event.getPos())) {
                 ContainerClickHandler.onContainerClicked(event.getEntity(), event.getPos());
             }
         });
+        super.registerEvents(modBus);
     }
 }
-*///?}
+//?}

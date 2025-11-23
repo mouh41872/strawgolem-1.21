@@ -65,7 +65,7 @@ public class HarvestCropGoal extends MoveToBlockGoal {
                 golem.setPickingUpItem(true);
             }
             harvester.completeHarvest();
-            Services.SIDE.scheduleServer(40, () -> {
+            Services.SIDE.scheduleServer(60, () -> {
                 harvester.findHarvestables();
                 golem.setPickingUpBlock(false);
                 golem.setPickingUpItem(false);

@@ -133,10 +133,14 @@ public class DelivererImpl<E extends LivingEntity & ICapabilityHaver> extends Ab
     @Override
     public void readTag(Tag tag) {
         if (tag instanceof CompoundTag deliverTag) {
-            CompoundTag priority = deliverTag.getCompound("priority");
+            //? if < 1.20.6 {
+            /*CompoundTag priority = deliverTag.getCompound("priority");
             if (!priority.isEmpty()) {
                 priorityContainer = NbtUtils.readBlockPos(priority);
             }
+            *///?} else {
+            NbtUtils.readBlockPos(deliverTag, "priority").ifPresent(blockPos -> priorityContainer = blockPos);
+            //?}
             ListTag positions = deliverTag.getList("positions", Tag.TAG_COMPOUND);
             readPositions(positions);
         } else {
@@ -148,7 +152,10 @@ public class DelivererImpl<E extends LivingEntity & ICapabilityHaver> extends Ab
         ListTag positions = (ListTag) tag;
         containerSet.clear();
         for (Tag position : positions) {
-            BlockPos pos = NbtUtils.readBlockPos((CompoundTag) position);
+            //? if >= 1.20.6 {
+            BlockPos pos = NbtUtils.readBlockPos((CompoundTag) position, "blockPos").orElse(null);
+            //?} else
+            /*BlockPos pos = NbtUtils.readBlockPos((CompoundTag) position);*/
             if (ContainerUtil.isContainer(getLevel(), pos)) {
                 containerSet.add(pos);
             }

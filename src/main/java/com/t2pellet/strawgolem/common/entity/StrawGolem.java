@@ -51,10 +51,17 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+
+//? if >= 1.20.6 {
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+//?} elif > 1.19.3 {
+/*import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+*///?}
+
 //? if > 1.19.3 {
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import net.minecraft.world.damagesource.DamageTypes;
 //?} else {
@@ -116,7 +123,18 @@ public class StrawGolem extends AbstractGolem implements
         tether = capabilities.addCapability(Tether.class);
     }
 
+    //? if >= 1.20.6 {
     @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(IS_SCARED, false);
+        builder.define(HAS_HAT, false);
+        builder.define(BARREL_HEALTH, 0);
+        builder.define(HARVESTING_ITEM, false);
+        builder.define(HARVESTING_BLOCK, false);
+    }
+    //?} else {
+    /*@Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(IS_SCARED, false);
@@ -125,6 +143,7 @@ public class StrawGolem extends AbstractGolem implements
         this.entityData.define(HARVESTING_ITEM, false);
         this.entityData.define(HARVESTING_BLOCK, false);
     }
+    *///?}
 
     /* AI */
 
@@ -232,7 +251,10 @@ public class StrawGolem extends AbstractGolem implements
             boolean success = repairBarrel();
             if (success) {
                 item.shrink(1);
-                playSound(SoundEvents.ARMOR_EQUIP_LEATHER);
+                //? if >= 1.20.6 {
+                playSound(SoundEvents.ARMOR_EQUIP_LEATHER.value());
+                //?} else
+                /*playSound(SoundEvents.ARMOR_EQUIP_LEATHER);*/
             }
         } else if (hand == InteractionHand.MAIN_HAND && item.isEmpty() && player.isCrouching()) {
             StrawGolemOrderer orderer = (StrawGolemOrderer) player;
@@ -463,7 +485,10 @@ public class StrawGolem extends AbstractGolem implements
 
     @SafeVarargs
     public final boolean isRunningGoal(Class<? extends Goal>... classes) {
-        return goalSelector.getRunningGoals().anyMatch(goal -> {
+        //? if >= 1.20.6 {
+        return goalSelector.getAvailableGoals().stream().anyMatch(goal -> {
+        //?} else
+        /*return goalSelector.getRunningGoals().anyMatch(goal -> {*/
             for (Class<? extends Goal> clazz : classes) {
                 if (clazz.isInstance(goal.getGoal())) return true;
             }

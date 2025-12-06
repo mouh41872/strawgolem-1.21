@@ -1,5 +1,5 @@
 //? if neoforge {
-package com.t2pellet.strawgolem.neoforge.events;
+/*package com.t2pellet.strawgolem.neoforge.events;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelAccessor;
@@ -20,4 +20,4 @@ public class CropGrowthEvent extends BlockEvent {
         }
     }
 }
-//?}
+*///?}

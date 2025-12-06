@@ -1,9 +1,12 @@
 package com.t2pellet.strawgolem.common.util;
 
-//? if > 1.19.3 {
-import software.bernie.geckolib.core.animation.Animation;
+//? if >= 1.20.6 {
+import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.animation.Animation;
+//?} elif > 1.19.3 {
+/*import software.bernie.geckolib.core.animation.Animation;
 import software.bernie.geckolib.core.animation.RawAnimation;
-//?} else {
+*///?} else {
 /*import software.bernie.geckolib3.core.builder.RawAnimation;
 import software.bernie.geckolib3.core.builder.ILoopType;
 *///?}

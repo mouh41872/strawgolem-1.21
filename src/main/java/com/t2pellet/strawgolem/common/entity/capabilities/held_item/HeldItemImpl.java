@@ -46,12 +46,20 @@ class HeldItemImpl<E extends Entity & ICapabilityHaver> extends AbstractCapabili
 
     @Override
     public Tag writeTag() {
-        return container.createTag();
+        //? if >= 1.20.6 {
+        Level level = VersionHelper.getLevel(entity);
+        return container.createTag(level.registryAccess());
+        //?} else
+        /*return container.createTag();*/
     }
 
     @Override
     public void readTag(Tag tag) {
-        container.fromTag((ListTag) tag);
+        //? if >= 1.20.6 {
+        Level level = VersionHelper.getLevel(entity);
+        container.fromTag((ListTag) tag, level.registryAccess());
+        //?} else
+        /*container.fromTag((ListTag) tag);*/
     }
 
     private Level getLevel() {

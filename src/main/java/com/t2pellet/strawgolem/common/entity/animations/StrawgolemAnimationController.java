@@ -7,10 +7,14 @@ import org.jetbrains.annotations.NotNull;
 /*import software.bernie.geckolib3.core.builder.RawAnimation;
 import software.bernie.geckolib3.core.builder.ILoopType;
 import software.bernie.geckolib3.core.controller.AnimationController;
-*///?} else {
-import software.bernie.geckolib.core.animation.Animation;
+*///?} else if < 1.20.6 {
+/*import software.bernie.geckolib.core.animation.Animation;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.RawAnimation;
+*///?} else {
+import software.bernie.geckolib.animation.Animation;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.RawAnimation;
 //?}
 
 public class StrawgolemAnimationController extends AnimationController<StrawGolem> {

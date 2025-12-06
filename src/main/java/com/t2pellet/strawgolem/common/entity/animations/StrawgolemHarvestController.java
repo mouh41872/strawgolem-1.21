@@ -7,10 +7,14 @@ import com.t2pellet.strawgolem.common.util.VersionSafeGeckolib;
 /*import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.RawAnimation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-*///?} else {
-import software.bernie.geckolib.core.animation.AnimationState;
+*///?} elif < 1.20.6 {
+/*import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
+*///?} else {
+import software.bernie.geckolib.animation.AnimationState;
+import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.animation.PlayState;
 //?}
 
 public class StrawgolemHarvestController extends StrawgolemAnimationController {

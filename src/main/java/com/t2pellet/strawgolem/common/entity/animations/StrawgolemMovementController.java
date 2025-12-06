@@ -6,10 +6,14 @@ import com.t2pellet.strawgolem.common.util.VersionSafeGeckolib;
 /*import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.RawAnimation;
 import software.bernie.geckolib3.core.controller.AnimationController;
-*///?} else {
-import software.bernie.geckolib.core.animation.AnimationController;
+*///?} else if < 1.20.6 {
+/*import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
+*///?} else {
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.animation.PlayState;
 //?}
 
 public class StrawgolemMovementController extends StrawgolemAnimationController {

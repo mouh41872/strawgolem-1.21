@@ -1,5 +1,5 @@
 //? if neoforge {
-package com.t2pellet.strawgolem.neoforge.mixin;
+/*package com.t2pellet.strawgolem.neoforge.mixin;
 
 import com.t2pellet.strawgolem.Constants;
 import com.t2pellet.strawgolem.common.util.crop.CropUtil;
@@ -34,4 +34,4 @@ public class GrowthMixin {
         }
     }
 }
-//?}
+*///?}

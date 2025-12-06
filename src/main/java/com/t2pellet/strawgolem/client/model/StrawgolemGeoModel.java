@@ -9,6 +9,7 @@ import net.minecraft.client.model.ArmedModel;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import net.minecraft.world.entity.HumanoidArm;
+
 //? if < 1.19.3 {
 /*import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.geo.render.built.GeoBone;
@@ -17,11 +18,17 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 import software.bernie.geckolib3.util.RenderUtils;
 *///?} else {
 import software.bernie.geckolib.constant.DataTickets;
-import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
-import software.bernie.geckolib.util.RenderUtils;
 //?}
+
+//? if >= 1.20.6 {
+import software.bernie.geckolib.animation.AnimationState;
+import software.bernie.geckolib.util.RenderUtil;
+//?} elif >= 1.19.3 {
+/*import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.util.RenderUtils;
+*///?}
 
 //? if < 1.19.3 {
 /*public class StrawgolemGeoModel extends AnimatedGeoModel<StrawGolem> implements ArmedModel {
@@ -98,9 +105,17 @@ public class StrawgolemGeoModel extends GeoModel<StrawGolem> implements ArmedMod
         var arms = getBone("arms").orElseThrow();
         var upper = getBone("upper").orElseThrow();
         //?}
-        RenderUtils.prepMatrixForBone(poseStack, upper);
+
+        //? if >= 1.20.6 {
+        RenderUtil.prepMatrixForBone(poseStack, upper);
+        RenderUtil.translateAndRotateMatrixForBone(poseStack, upper);
+        RenderUtil.prepMatrixForBone(poseStack, arms);
+        RenderUtil.translateAndRotateMatrixForBone(poseStack, arms);
+        //?} else {
+        /*RenderUtils.prepMatrixForBone(poseStack, upper);
         RenderUtils.translateAndRotateMatrixForBone(poseStack, upper);
         RenderUtils.prepMatrixForBone(poseStack, arms);
         RenderUtils.translateAndRotateMatrixForBone(poseStack, arms);
+        *///?}
     }
 }

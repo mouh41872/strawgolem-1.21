@@ -56,9 +56,13 @@ public class TetherImpl<E extends Entity & ICapabilityHaver> extends AbstractCap
     @Override
     public void readTag(Tag tag) {
         CompoundTag compoundTag = (CompoundTag) tag;
-        CompoundTag posTag = compoundTag.getCompound("pos");
+        //? if < 1.20.6 {
+        /*CompoundTag posTag = compoundTag.getCompound("pos");
         if (!posTag.isEmpty()) {
             pos = NbtUtils.readBlockPos(posTag);
         } else pos = null;
+        *///?} else {
+        pos = NbtUtils.readBlockPos(compoundTag, "pos").orElse(null);
+        //?}
     }
 }

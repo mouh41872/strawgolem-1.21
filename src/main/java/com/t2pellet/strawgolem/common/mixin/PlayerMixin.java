@@ -21,9 +21,15 @@ public class PlayerMixin implements StrawGolemOrderer {
     private static final EntityDataAccessor<Integer> GOLEM_ID = SynchedEntityData.defineId(Player.class, EntityDataSerializers.INT);
 
     @Inject(method = "defineSynchedData", at = @At("TAIL"))
-    private void defineGolemID(CallbackInfo ci) {
+    //? if >= 1.20.6 {
+    private void defineGolemID(SynchedEntityData.Builder builder, CallbackInfo ci) {
+    //?} else
+    /*private void defineGolemID(CallbackInfo ci) {*/
         Player player = (Player) (Object) this;
-        player.getEntityData().define(GOLEM_ID, -1);
+        //? if >= 1.20.6 {
+        builder.define(GOLEM_ID, -1);
+        //?} else
+        /*player.getEntityData().define(GOLEM_ID, -1);*/
     }
 
     @Override

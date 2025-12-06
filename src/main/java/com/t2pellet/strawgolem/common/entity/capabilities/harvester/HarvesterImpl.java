@@ -16,6 +16,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentUser;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -23,6 +24,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+
+//? if >= 1.20.6 {
+import net.minecraft.core.component.DataComponents;
+//?}
+
 //? if < 1.20.1 {
 /*import net.minecraft.world.level.storage.loot.LootContext;
 *///?} else {
@@ -34,7 +40,7 @@ import java.util.Deque;
 import java.util.List;
 import java.util.Optional;
 
-class HarvesterImpl<E extends Entity & ICapabilityHaver> extends AbstractCapability<E> implements Harvester {
+class HarvesterImpl<E extends Entity & Harvester.HarvesterEntity> extends AbstractCapability<E> implements Harvester {
 
     private final Deque<BlockPos> harvestQueue = new ArrayDeque<>();
     private BlockPos currentHarvestPos = null;
@@ -103,7 +109,10 @@ class HarvesterImpl<E extends Entity & ICapabilityHaver> extends AbstractCapabil
         CompoundTag compoundTag = (CompoundTag) tag;
         CompoundTag posTag = compoundTag.getCompound("pos");
         if (!posTag.isEmpty()) {
-            currentHarvestPos = NbtUtils.readBlockPos(posTag);
+            //? if >= 1.20.6 {
+            currentHarvestPos = NbtUtils.readBlockPos(posTag, "blockPos").orElse(null);
+            //?} else
+            /*currentHarvestPos = NbtUtils.readBlockPos(posTag);*/
         } else currentHarvestPos = null;
     }
 
@@ -161,7 +170,13 @@ class HarvesterImpl<E extends Entity & ICapabilityHaver> extends AbstractCapabil
                 .withParameter(LootContextParams.TOOL, ItemStack.EMPTY)
                 .withParameter(LootContextParams.ORIGIN, entity.position());
         List<ItemStack> drops = state.getDrops(builder);
-        Optional<ItemStack> pickupStack = drops.stream().filter((d) -> !SeedUtil.isSeed(d) || d.getItem().isEdible()).findFirst();
+        Optional<ItemStack> pickupStack = drops.stream().filter((d) -> {
+            if (!SeedUtil.isSeed(d)) return false;
+            //? if >= 1.20.6 {
+            return d.getItem().components().has(DataComponents.FOOD);
+            //?} else
+            /*return d.getItem().isEdible();*/
+        }).findFirst();
         return pickupStack.orElse(ItemStack.EMPTY);
     }
 

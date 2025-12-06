@@ -1,5 +1,5 @@
 //? if neoforge {
-package com.t2pellet.strawgolem.neoforge;
+/*package com.t2pellet.strawgolem.neoforge;
 
 import com.t2pellet.haybale.HaybaleMod;
 import com.t2pellet.haybale.client.HaybaleModClient;
@@ -58,4 +58,4 @@ public class StrawgolemNeoforge extends HaybaleNeoforgeMod {
         super.registerEvents(modBus);
     }
 }
-//?}
+*///?}

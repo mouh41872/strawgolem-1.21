@@ -16,8 +16,6 @@ import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 *///?} else {
 import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib.cache.object.GeoBone;
-import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 //?}
 

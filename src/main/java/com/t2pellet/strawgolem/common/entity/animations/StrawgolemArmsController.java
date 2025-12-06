@@ -3,11 +3,16 @@ package com.t2pellet.strawgolem.common.entity.animations;
 
 import com.t2pellet.strawgolem.common.entity.StrawGolem;
 import com.t2pellet.strawgolem.common.util.VersionSafeGeckolib;
-//? if >= 1.19.4 {
-import software.bernie.geckolib.core.animation.AnimationController;
+
+//? if >= 1.20.6 {
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.animation.PlayState;
+//?} elif >= 1.19.4 {
+/*import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
-//?} else {
+*///?} else {
 /*import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.RawAnimation;
 import software.bernie.geckolib3.core.controller.AnimationController;

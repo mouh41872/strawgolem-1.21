@@ -1,0 +1,13 @@
+plugins {
+    id("stonecutter.subproject")
+}
+
+stonecutter {
+    name = "forge"
+    version = "1.21.11"
+}
+
+dependencies {
+    "minecraft"("com.mojang:minecraft:1.21.11")
+    "forge"("net.minecraftforge:forge:1.21.11-51.1.0")
+}

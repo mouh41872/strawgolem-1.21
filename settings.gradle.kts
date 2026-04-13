@@ -1,4 +1,3 @@
-
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -35,24 +34,21 @@ stonecutter {
         version("1.20.4-fabric","1.20.4")
         version("1.20.4-neoforge","1.20.4")
         version("1.20.6-fabric","1.20.6")
-//        version("1.20.6-neoforge","1.20.6")
-//        version("1.21.1-fabric","1.21.1")
-//        version("1.21.1-neoforge","1.21.1")
-//        version("1.21.2+3-fabric","1.21.2")
-//        version("1.21.2+3-neoforge","1.21.2")
-//        version("1.21.4-fabric", "1.21.4")
-//        version("1.21.4-neoforge", "1.21.4")
-//        version("1.21.5-fabric", "1.21.5")
-//        version("1.21.5-neoforge", "1.21.5")
-//        version("1.21.6+8-fabric", "1.21.6")
-//        version("1.21.6+8-neoforge", "1.21.6")
+//      version("1.20.6-neoforge","1.20.6")
+//      version("1.21.1-fabric","1.21.1")
+//      version("1.21.1-neoforge","1.21.1")
+//      version("1.21.2+3-fabric","1.21.2")
+//      version("1.21.2+3-neoforge","1.21.2")
+//      version("1.21.4-fabric", "1.21.4")
+//      version("1.21.4-neoforge", "1.21.4")
+//      version("1.21.5-fabric", "1.21.5")
+//      version("1.21.5-neoforge", "1.21.5")
+//      version("1.21.6+8-fabric", "1.21.6")
+//      version("1.21.6+8-neoforge", "1.21.6")
+        version("1.21.11-forge", "1.21.1")
         vcsVersion="1.19.2-fabric"
     }
     create(rootProject)
 }
 
 rootProject.name = "Straw Golem"
-
-
-
-

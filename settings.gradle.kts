@@ -7,11 +7,6 @@ pluginManagement {
         maven("https://maven.minecraftforge.net/")
         maven("https://maven.neoforged.net/releases/")
         maven("https://repo.spongepowered.org/maven")
-        maven("https://maven.kikugie.dev/snapshots")
-        maven("https://maven.kikugie.dev/releases")
-    }
-    plugins {
-        kotlin("jvm") version "1.9.24"
     }
 }
 
@@ -25,10 +20,11 @@ stonecutter {
     centralScript = "build.gradle.kts"
 
     shared {
-        version("1.21.11-forge", "1.21.1")
-        vcsVersion="1.21.11-forge"
+        // We use 1.21.1 as the library base
+        version("1.21.1", "1.21.1")
     }
-    create(rootProject)
+    // This tells the system to use 1.21.1 as the active project
+    create(rootProject, "1.21.1")
 }
 
 rootProject.name = "Straw Golem"
